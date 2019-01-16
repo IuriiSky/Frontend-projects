@@ -27,13 +27,30 @@ class Carousel {
         this.buttonPrevious.addEventListener('click', () => {
             let last = this.slides[this.slidesCount-1];
             this.slidesElement.prepend(last);
-            this.initSlides();
+            last.style.marginLeft = '-330px';
+
+            setTimeout(()=>{
+                last.style.marginLeft = '10px';
+                last.style.transition = '0.5s';
+                this.initSlides();
+            },200);
         });
 
         this.buttonNext.addEventListener('click', () => {
             let first = this.slides[0];
-            this.slidesElement.appendChild(first);
-            this.initSlides();
+            first.style.marginLeft = '-330px';
+            first.style.transition = '0.5s';
+
+            setTimeout(() =>{
+                this.slidesElement.appendChild(first);
+                this.initSlides();
+            },500);
+
+            setTimeout(() => {
+                let last = this.slides[this.slidesCount-1];
+                last.style.marginLeft = '10px';
+            },1000);
+            
         });
     }
 }
